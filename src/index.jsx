@@ -8,7 +8,6 @@ import { Loader } from '@react-three/drei'
 
 const root = ReactDOM.createRoot(document.querySelector('#root'))
 
-// Define styles
 const containerStyles = {
     display: 'flex',
     justifyContent: 'center',
@@ -43,13 +42,13 @@ root.render(
                 antialias: true,
                 toneMapping: NoToneMapping,
                 outputColorSpace: SRGBColorSpace,
-                
+                powerPreference: 'high-performance',
             }}
             className='r3f'
             camera={{
                 fov: 40,
                 near: 0.1,
-                far: 2000,
+                far: 100,
                 position: [-3, 1.5, 4]
             }}
         >
@@ -58,11 +57,10 @@ root.render(
             </Suspense>
         </Canvas>
         <Loader
-            containerStyles={{ ...containerStyles }} // Spread the container styles
-            innerStyles={{ ...innerStyles }} // Spread the inner container styles
-            dataStyles={{ ...dataStyles }} // Spread the text styles
-            dataInterpolation={(p) => `Loading portfolio ${p.toFixed(2)}%`} // Customize loading text
-            initialState={(active) => active} // Use loader's active state
+            containerStyles={containerStyles}
+            innerStyles={innerStyles}
+            dataStyles={dataStyles}
+            dataInterpolation={(p) => `Loading portfolio ${p.toFixed(2)}%`}
         />
     </StrictMode>
 )
